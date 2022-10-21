@@ -3,7 +3,7 @@ const mongoose=require("mongoose");
 const username="admin";
 const password="admin";
 const database="OmegaBD";
-const URI="mongodb+srv://"+username+":"+password+"@u34-03baco.brvbw3z.mongodb.net/"+database+"?retryWrites=true&w=majority";
+const URI="mongodb+srv://"+username+":"+password+"@cluster0.sqnofbx.mongodb.net/?retryWrites=true&w=majority";
 
 const conectar = async () =>{
     try{
