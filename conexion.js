@@ -2,8 +2,9 @@
 const mongoose=require("mongoose");
 const username="admin";
 const password="admin";
-const database="OmegaBD";
-const URI="mongodb+srv://"+username+":"+password+"@cluster0.sqnofbx.mongodb.net/?retryWrites=true&w=majority";
+const database="omegapetshop";
+const URI="mongodb+srv://"+username+":"+password+"@clusteromegapetshop.fwnu36z.mongodb.net/?retryWrites=true&w=majority";
+
 
 const conectar = async () =>{
     try{
