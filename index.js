@@ -17,9 +17,10 @@ app.listen(port,()=>{
     console.log("API iniciando en el puerto" +port);
 });
 
-// RUTAS
+// RUTAS BASE
 app.get("/",(request,response)=>{
     response.send("Api iniciando");
 });
 
 app.use("/categorias", require("./rutas/CategoriaRutas"));
+app.use("/clientes", require("./rutas/ClienteRutas"));

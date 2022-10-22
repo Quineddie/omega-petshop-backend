@@ -1,20 +1,19 @@
-const CategoriaModelo= require("../modelos/CategoriaModelo");
-const CategoriaOperaciones = {} ;
+const CategoriaModelo = require("../modelos/CategoriaModelo");
+const CategoriaOperaciones = {};
 
-CategoriaOperaciones.crearCategoria = async(req,res) => {
+CategoriaOperaciones.crearCategoria = async(req, res) => {
     try {
-        const objeto=req.body 
+        const objeto = req.body;
         const categoria = new CategoriaModelo(objeto);
         const categoriaGuardada = await categoria.save();
-        if(categoriaGuardada != null) {
+        if (categoriaGuardada != null) {
             res.status(201).send(categoriaGuardada);
-        }       
+        }
     } catch (error) {
-        res.status(400).send("Mala peticion");
-        
+        res.status(400).send("Mala petición. "+error);
     }
-
 }
+
 CategoriaOperaciones.consultarCategorias = async(req, res) => {
     try {
         const filtro = req.query;
@@ -83,5 +82,3 @@ CategoriaOperaciones.borrarCategoria = async(req, res) => {
 }
 
 module.exports = CategoriaOperaciones;
-
-
