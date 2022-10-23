@@ -3,7 +3,7 @@ const mongoose=require("mongoose");
 const username="admin";
 const password="admin";
 const database="omegapetshop";
-const URI="mongodb+srv://"+username+":"+password+"@clusteromegapetshop.fwnu36z.mongodb.net/?retryWrites=true&w=majority";
+const URI="mongodb+srv://"+username+":"+password+"@clusteromegapetshop.fwnu36z.mongodb.net/"+database+"?retryWrites=true&w=majority";
 
 
 const conectar = async () =>{
