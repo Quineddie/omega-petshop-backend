@@ -24,3 +24,4 @@ app.get("/",(request,response)=>{
 
 app.use("/categorias", require("./rutas/CategoriaRutas"));
 app.use("/clientes", require("./rutas/ClienteRutas"));
+app.use("/productos", require("./rutas/ProductoRutas"))

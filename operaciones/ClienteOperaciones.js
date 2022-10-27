@@ -1,5 +1,5 @@
 const clienteModelo = require("../modelos/ClienteModelo");
-const clienteOperaciones = {}
+const clienteOperaciones = {};
 
 clienteOperaciones.crearCliente = async (req, res)=>{
     try {
