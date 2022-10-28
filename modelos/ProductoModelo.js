@@ -1,9 +1,11 @@
 const mongoose=require("mongoose");
 const productoSchema=mongoose.Schema({
-    nombre : { type: String,maxLength:50, required: true },
-	tipo : { type: String,maxLength:50, required: true },
+    nombre : { type: String,maxLength:40, required:true,unique:true },
+	marca : { type: String,maxLength:40, required:true,unique:true },
 	precio : { type: Number, required: true },
-	presentacion : { type: String,maxLength:50, required: true },
+	categoria : { type: String,maxLength:50, required:true,unique:true },
+	imagen : {  type: String,maxLength:40, required:true,unique:true },
+	disp:{ type:Boolean,required:true },
 	cantidad : { type: Number, required: true },
 
 });
