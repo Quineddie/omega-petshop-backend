@@ -7,7 +7,7 @@ const mongoose=require("./conexion");
 //CONFIGURACIONES
 const app = express();
 const env = process.env;
-const port = env.PORT || 3000;
+const port = env.PORT || 8000;
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cors());
