@@ -22,6 +22,6 @@ app.get("/",(request,response)=>{
     response.send("Api iniciando");
 });
 
-app.use("/categorias", require("./rutas/CategoriaRutas"));
-app.use("/clientes", require("./rutas/ClienteRutas"));
-app.use("/productos", require("./rutas/ProductoRutas"))
+app.use("/api/categorias", require("./rutas/CategoriaRutas"));
+app.use("/api/clientes", require("./rutas/ClienteRutas"));
+app.use("/api/productos", require("./rutas/ProductoRutas"))
