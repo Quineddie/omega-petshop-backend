@@ -10,7 +10,8 @@ CategoriaOperaciones.crearCategoria = async(req, res) => {
             res.status(201).send(categoriaGuardada);
         }
     } catch (error) {
-        res.status(400).send("Mala petición. "+error);
+        console.log(error);
+        res.status(400).json(error);
     }
 }
 
@@ -35,7 +36,7 @@ CategoriaOperaciones.consultarCategorias = async(req, res) => {
             res.status(404).send("No hay datos");
         }
     } catch (error) {
-        res.status(400).send("Mala petición. "+error);
+        res.status(400).json(+error);
     }
 }
 
@@ -50,7 +51,7 @@ CategoriaOperaciones.consultarCategoria = async(req, res) => {
             res.status(404).send("No hay datos");
         }
     } catch (error) {
-        res.status(400).send("Mala petición. "+error);
+        res.status(400).json(error);
     }
 }
 
@@ -67,7 +68,7 @@ CategoriaOperaciones.modificarCategoria = async(req, res) => {
         const categoriaActualizada = await CategoriaModelo.findByIdAndUpdate(id, categoria, { new: true });
         res.status(200).send(categoriaActualizada);
     } catch (error) {
-        res.status(400).send("Mala petición. "+error);
+        res.status(400).json(error);
     }
 }
 
@@ -77,7 +78,7 @@ CategoriaOperaciones.borrarCategoria = async(req, res) => {
         const categoriaBorrada = await CategoriaModelo.findByIdAndDelete(id);
         res.status(200).send(categoriaBorrada);
     } catch (error) {
-        res.status(400).send("Mala petición. "+error);
+        res.status(400).json(error);
     }
 }
 

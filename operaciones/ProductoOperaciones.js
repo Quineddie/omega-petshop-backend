@@ -7,9 +7,12 @@ productoOperaciones.crearProducto = async (req, res)=>{
         console.log(objeto);
         const producto = new productoModelo(objeto);
         const productoGuardado = await producto.save();
+        if (productoGuardado != null) {
         res.status(201).send(productoGuardado);
+        }
     } catch (error) {
-        res.status(400).send("Mala petición. "+error);
+        console.log(error);
+        res.status(400).json(error);
     }
 }
 
@@ -35,7 +38,7 @@ productoOperaciones.buscarProductos = async (req, res)=>{
             res.status(404).send("No hay datos");
         }
     } catch (error) {
-        res.status(400).send("Mala petición. "+error);
+        res.status(400).json(error);
     }
 }
 
@@ -49,7 +52,7 @@ productoOperaciones.buscarProducto = async (req, res)=>{
             res.status(404).send("No hay datos");
         }
     } catch (error) {
-        res.status(400).send("Mala petición. "+error);
+        res.status(400).json(error);
     }
 }
 
@@ -62,6 +65,8 @@ productoOperaciones.modificarProducto = async (req, res)=>{
             marca: body.marca,
             precio: body.precio,
             categorias: body.categorias,
+            imagen : body.imagen,
+            disp : body.disp
             
         }
         const productoActualizado = await productoModelo.findByIdAndUpdate(id, datosActualizar, { new : true });
@@ -72,7 +77,7 @@ productoOperaciones.modificarProducto = async (req, res)=>{
             res.status(404).send("No hay datos");
         }
     } catch (error) {
-        res.status(400).send("Mala petición. "+error);
+        res.status(400).json(error);
     }
 }
 productoOperaciones.borrarProducto = async (req, res)=>{
@@ -85,7 +90,7 @@ productoOperaciones.borrarProducto = async (req, res)=>{
             res.status(404).send("No hay datos");
         }
     } catch (error) {
-        res.status(400).send("Mala petición. "+error);
+        res.status(400).json(error);
     }
 }
 module.exports = productoOperaciones;
