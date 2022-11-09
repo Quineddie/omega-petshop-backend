@@ -1,10 +1,10 @@
-const productoOperaciones=require("../operaciones/ProductoOperaciones");
-const router = require("express").Router();
+const ProductoOperaciones = require("../operaciones/ProductoOperaciones");
+const router = require('express').Router();
 
-router.post("/", productoOperaciones.crearProducto);
-router.get("/", productoOperaciones.buscarProductos);
-router.get("/:id", productoOperaciones.buscarProducto);
-router.put("/:id", productoOperaciones.modificarProducto);
-router.delete("/:id", productoOperaciones.borrarProducto);
+router.get("/", ProductoOperaciones.consultarProductos);
+router.get("/:id", ProductoOperaciones.consultarProducto);
+router.post("/", ProductoOperaciones.crearProducto);
+router.put("/:id", ProductoOperaciones.modificarProducto);
+router.delete("/:id", ProductoOperaciones.borrarProducto);
 
 module.exports = router;

@@ -1,14 +1,13 @@
-const productoModelo=require("../modelos/ProductoModelo");
-const productoOperaciones={}
+const ProductoModelo = require("../modelos/ProductoModelo");
+const ProductoOperaciones = {};
 
-productoOperaciones.crearProducto = async (req, res)=>{
+ProductoOperaciones.crearProducto = async(req, res) => {
     try {
         const objeto = req.body;
-        console.log(objeto);
-        const producto = new productoModelo(objeto);
+        const producto = new ProductoModelo(objeto);
         const productoGuardado = await producto.save();
         if (productoGuardado != null) {
-        res.status(201).send(productoGuardado);
+            res.status(201).send(productoGuardado);
         }
     } catch (error) {
         console.log(error);
@@ -16,25 +15,26 @@ productoOperaciones.crearProducto = async (req, res)=>{
     }
 }
 
-productoOperaciones.buscarProductos = async (req, res)=>{
+ProductoOperaciones.consultarProductos = async(req, res) => {
     try {
         const filtro = req.query;
-        let listaproductos;
+        let listaProductos;
         if (filtro.q != null) {
-            listaproductos = await productoModelo.find({
+            listaProductos = await ProductoModelo.find({
                 "$or" : [ 
-                    { "nombre": { $regex:filtro.q, $options:"i" }},
-                    { "marca": { $regex:filtro.q, $options:"i" }},
-                    { "categorias": { $regex:filtro.q, $options:"i" }}
+                    {"nombre": { $regex:filtro.q, $options:"i" }},
+                    {"marca": { $regex:filtro.q, $options:"i" }},
+                    {"categorias": { $regex:filtro.q, $options:"i" }}
                 ]
             });
         }
         else {
-            listaproductos = await productoModelo.find(filtro);
+            listaProductos = await ProductoModelo.find(filtro);
         }
-        if (listaproductos.length > 0){
-            res.status(200).send(listaproductos);
-        } else {
+        if (listaProductos.length > 0) {
+            res.status(200).send(listaProductos);
+        }
+        else {
             res.status(404).send("No hay datos");
         }
     } catch (error) {
@@ -42,13 +42,14 @@ productoOperaciones.buscarProductos = async (req, res)=>{
     }
 }
 
-productoOperaciones.buscarProducto = async (req, res)=>{
+ProductoOperaciones.consultarProducto = async(req, res) => {
     try {
         const id = req.params.id;
-        const producto = await productoModelo.findById(id);
-        if (producto != null){
+        const producto = await ProductoModelo.findById(id);
+        if (producto != null) {
             res.status(200).send(producto);
-        } else {
+        }
+        else {
             res.status(404).send("No hay datos");
         }
     } catch (error) {
@@ -56,20 +57,20 @@ productoOperaciones.buscarProducto = async (req, res)=>{
     }
 }
 
-
-productoOperaciones.modificarProducto = async (req, res)=>{
+ProductoOperaciones.modificarProducto = async(req, res) => {
     try {
         const id = req.params.id;
         const body = req.body;
-        const datosActualizar = {
+        const producto = {
+            nombre: body.nombre,
             marca: body.marca,
             precio: body.precio,
             categorias: body.categorias,
             imagen : body.imagen,
             disp : body.disp
-            
         }
-        const productoActualizado = await productoModelo.findByIdAndUpdate(id, datosActualizar, { new : true });
+        console.log(producto);
+        const productoActualizado = await ProductoModelo.findByIdAndUpdate(id, producto, { new: true });
         if (productoActualizado != null) {
             res.status(200).send(productoActualizado);
         }
@@ -80,17 +81,20 @@ productoOperaciones.modificarProducto = async (req, res)=>{
         res.status(400).json(error);
     }
 }
-productoOperaciones.borrarProducto = async (req, res)=>{
+
+ProductoOperaciones.borrarProducto = async(req, res) => {
     try {
         const id = req.params.id;
-        const producto = await productoModelo.findByIdAndDelete(id);
-        if (producto != null){
-            res.status(200).send(producto);
-        } else {
+        const productoBorrado = await ProductoModelo.findByIdAndDelete(id);
+        if (productoBorrado != null) {
+            res.status(200).send(productoBorrado);
+        }
+        else {
             res.status(404).send("No hay datos");
         }
     } catch (error) {
         res.status(400).json(error);
     }
 }
-module.exports = productoOperaciones;
+
+module.exports = ProductoOperaciones;
