@@ -4,6 +4,7 @@ const ProductoOperaciones = {};
 ProductoOperaciones.crearProducto = async(req, res) => {
     try {
         const objeto = req.body;
+        console.log(objeto);
         const producto = new ProductoModelo(objeto);
         const productoGuardado = await producto.save();
         if (productoGuardado != null) {
@@ -11,7 +12,7 @@ ProductoOperaciones.crearProducto = async(req, res) => {
         }
     } catch (error) {
         console.log(error);
-        res.status(400).json(error);
+        res.status(400).send("Mala peticion"+error);
     }
 }
 
